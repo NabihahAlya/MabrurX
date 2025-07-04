@@ -6,8 +6,6 @@ import { AuthStatus } from './AuthStatus';
 
 const navigationLinks = [
   { name: 'Home', href: '/' },
-  { name: 'Hajj', href: '/hajj' },
-  { name: 'Umrah', href: '/umrah' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
