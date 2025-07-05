@@ -125,6 +125,9 @@ dependencies:
   react-dom:
     specifier: ^18.3.1
     version: 18.3.1(react@18.3.1)
+  react-helmet:
+    specifier: ^6.1.0
+    version: 6.1.0(react@18.3.1)
   react-hook-form:
     specifier: ^7.53.0
     version: 7.56.3(react@18.3.1)
@@ -152,6 +155,9 @@ dependencies:
   zod:
     specifier: ^3.23.8
     version: 3.24.4
+  zustand:
+    specifier: ^5.0.6
+    version: 5.0.6(@types/react@18.3.21)(react@18.3.1)
 
 devDependencies:
   '@eslint/js':
@@ -4117,6 +4123,22 @@ packages:
       scheduler: 0.23.2
     dev: false
 
+  /react-fast-compare@3.2.2:
+    resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
+    dev: false
+
+  /react-helmet@6.1.0(react@18.3.1):
+    resolution: {integrity: sha512-4uMzEY9nlDlgxr61NL3XbKRy1hEkXmKNXhjbAIOVw5vcFrsdYbH2FEwcNyWvWinl103nXgzYNlns9ca+8kFiWw==}
+    peerDependencies:
+      react: '>=16.3.0'
+    dependencies:
+      object-assign: 4.1.1
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-fast-compare: 3.2.2
+      react-side-effect: 2.1.2(react@18.3.1)
+    dev: false
+
   /react-hook-form@7.56.3(react@18.3.1):
     resolution: {integrity: sha512-IK18V6GVbab4TAo1/cz3kqajxbDPGofdF0w7VHdCo0Nt8PrPlOZcuuDq9YYIV1BtjcX78x0XsldbQRQnQXWXmw==}
     engines: {node: '>=18.0.0'}
@@ -4199,6 +4221,14 @@ packages:
       react: '>=16.8'
     dependencies:
       '@remix-run/router': 1.23.0
+      react: 18.3.1
+    dev: false
+
+  /react-side-effect@2.1.2(react@18.3.1):
+    resolution: {integrity: sha512-PVjOcvVOyIILrYoyGEpDN3vmYNLdy1CajSFNt4TDsVQC5KpTijDvWVoR+/7Rz2xT978D8/ZtFceXxzsPwZEDvw==}
+    peerDependencies:
+      react: ^16.3.0 || ^17.0.0 || ^18.0.0
+    dependencies:
       react: 18.3.1
     dev: false
 
@@ -4858,3 +4888,25 @@ packages:
 
   /zod@3.24.4:
     resolution: {integrity: sha512-OdqJE9UDRPwWsrHjLN2F8bPxvwJBK22EHLWtanu0LSYr5YqzsaaW3RMgmjwr8Rypg5k+meEJdSPXJZXE/yqOMg==}
+
+  /zustand@5.0.6(@types/react@18.3.21)(react@18.3.1):
+    resolution: {integrity: sha512-ihAqNeUVhe0MAD+X8M5UzqyZ9k3FFZLBTtqo6JLPwV53cbRB/mJwBI0PxcIgqhBBHlEs8G45OTDTMq3gNcLq3A==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
+    dependencies:
+      '@types/react': 18.3.21
+      react: 18.3.1
+    dev: false
