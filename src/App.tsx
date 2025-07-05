@@ -11,12 +11,10 @@ import Register from './pages/Register';
 import Contact from './pages/Contact';
 import About from './pages/About';
 
-// --- REVISI: TAMBAHKAN IMPOR HALAMAN ADMIN DI SINI ---
+// --- 1. HANYA IMPOR LAYOUT DAN DASHBOARD ADMIN ---
+import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/Dashboard';
-import Broadcast from './pages/admin/Broadcast';
-import SuccessfulPilgrims from './pages/admin/SuccessfulPilgrims';
-import IncompletePilgrims from './pages/admin/IncompletePilgrims';
-// ----------------------------------------------------
+// Impor halaman lain seperti SuccessfulPilgrims, Broadcast, dll. sudah tidak diperlukan lagi.
 
 const queryClient = new QueryClient();
 
@@ -26,18 +24,18 @@ const App = () => (
       <Toaster />
       <BrowserRouter>
         <Routes>
-          {/* Rute Utama */}
+          {/* Rute Publik */}
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           
-          {/* Rute Admin */}
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/broadcast" element={<Broadcast />} />
-          <Route path="/admin/successful-pilgrims" element={<SuccessfulPilgrims />} />
-          <Route path="/admin/incomplete-pilgrims" element={<IncompletePilgrims />} />
+          {/* --- 2. RUTE ADMIN MENJADI LEBIH SEDERHANA --- */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="dashboard" element={<AdminDashboard />} />
+            {/* Rute-rute lama ke /admin/successful-pilgrims, dll. sudah dihapus */}
+          </Route>
           
           {/* Rute Halaman Tidak Ditemukan */}
           <Route path="*" element={<NotFound />} />
