@@ -1,27 +1,19 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2 } from 'lucide-react';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { useToast } from '@/components/ui/use-toast';
-import { useAuth } from '@/lib/auth';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from "@/lib/auth";
 
 const formSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -35,8 +27,8 @@ export function LoginForm() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
   });
 
@@ -51,7 +43,14 @@ export function LoginForm() {
           title: "Login successful",
           description: "You have been logged in successfully",
         });
-        navigate('/');
+
+        const { user } = useAuth.getState();
+
+        if (user?.role === "admin") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/user/dashboard");
+        }
       } else {
         toast({
           variant: "destructive",
@@ -92,7 +91,7 @@ export function LoginForm() {
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="password"
@@ -114,14 +113,14 @@ export function LoginForm() {
                 Logging in...
               </>
             ) : (
-              'Sign In'
+              "Sign In"
             )}
           </Button>
         </form>
       </Form>
 
       <div className="mt-4 text-center text-sm">
-        Don't have an account?{' '}
+        Don't have an account?{" "}
         <Link to="/register" className="font-medium text-primary hover:underline">
           Sign up
         </Link>
@@ -129,3 +128,4 @@ export function LoginForm() {
     </div>
   );
 }
+
