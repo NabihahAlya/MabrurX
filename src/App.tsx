@@ -3,7 +3,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// Impor Halaman Utama
+// Impor Halaman Publik
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
@@ -11,10 +11,14 @@ import Register from './pages/Register';
 import Contact from './pages/Contact';
 import About from './pages/About';
 
-// --- 1. HANYA IMPOR LAYOUT DAN DASHBOARD ADMIN ---
+// Impor Layout dan Halaman untuk Admin Travel
 import AdminLayout from './pages/admin/AdminLayout';
 import AdminDashboard from './pages/admin/Dashboard';
-// Impor halaman lain seperti SuccessfulPilgrims, Broadcast, dll. sudah tidak diperlukan lagi.
+
+// Impor Layout dan Halaman untuk Admin PPIH
+import PpihLayout from './pages/ppih/PpihLayout';
+import PpihDashboard from './pages/ppih/PpihDashboard';
+
 
 const queryClient = new QueryClient();
 
@@ -31,10 +35,14 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           
-          {/* --- 2. RUTE ADMIN MENJADI LEBIH SEDERHANA --- */}
+          {/* Rute untuk Admin Travel */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="dashboard" element={<AdminDashboard />} />
-            {/* Rute-rute lama ke /admin/successful-pilgrims, dll. sudah dihapus */}
+          </Route>
+
+          {/* Rute untuk Admin PPIH */}
+          <Route path="/ppih" element={<PpihLayout />}>
+            <Route path="dashboard" element={<PpihDashboard />} />
           </Route>
           
           {/* Rute Halaman Tidak Ditemukan */}
